@@ -1,5 +1,6 @@
 package com.example.gpstracker
 
+import android.graphics.BitmapFactory
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -11,15 +12,19 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsView : Fragment() {
 
+    private lateinit var mMap: GoogleMap
+
     private val callback = OnMapReadyCallback { googleMap ->
-        val sydney = LatLng(-6.228241, 106.788967)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Universitas Pertamina"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap = googleMap
+        val uper = LatLng(-6.228241, 106.788967)
+        setCustomMarkerIcon(uper, "UniversitasPertamina")
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(uper))
     }
 
     override fun onCreateView(
@@ -34,5 +39,20 @@ class MapsView : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    // Apply Marker and Marker Option on Map
+    private fun setCustomMarkerIcon(location: LatLng, name: String) {
+        val markerOptions = MarkerOptions()
+            .position(location)
+            .title(name)
+
+        val bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(
+            BitmapFactory.decodeResource(resources, R.drawable.icon_anak)
+        )
+
+        markerOptions.icon(bitmapDescriptor)
+        // Kemudian tambahkan marker ke peta
+         mMap.addMarker(markerOptions)
     }
 }

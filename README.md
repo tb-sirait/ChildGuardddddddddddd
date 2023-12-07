@@ -19,5 +19,7 @@ Aplikasi Monitoring dan Tracking anak bertujuan mengatasi ketidaknyamanan dan ke
 
 ## Proposed Solution
 
-Untuk menjawab hal diatas, kami merancang sistem pelacakan anak berbasis IoT dan aplikasi Android bernama "ChildGuard". Sistem pelacakan ini diharapkan akan berjalan secara realtime dan akurat sebagai solusi dalam memantau dan melacak kondisi dan posisi anak. 
+Untuk menjawab hal diatas, kami merancang sistem pelacakan anak berbasis IoT dan aplikasi Android bernama "ChildGuard". Sistem pelacakan ini diharapkan akan berjalan secara realtime dan akurat sebagai solusi dalam memantau dan melacak kondisi dan posisi anak. <br> <br>
 
+## Use - Case Diagram
+Rancangan dari Use-Case diagram tersebut adalah sebagai berikut<br>

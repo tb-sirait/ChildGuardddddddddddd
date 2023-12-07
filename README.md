@@ -23,3 +23,4 @@ Untuk menjawab hal diatas, kami merancang sistem pelacakan anak berbasis IoT dan
 
 ## Use - Case Diagram
 Rancangan dari Use-Case diagram tersebut adalah sebagai berikut<br>
+![use_case](image_resources/image.png)

@@ -4,13 +4,15 @@
     android:layout_width="200dp"
     android:layout_height="100dp"
     android:background="@drawable/background_map_marker"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/customMarker">
     <View
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/rectangle_marker_atas"/>
 
     <TextView
+        android:id="@+id/nama_anak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,6 +22,7 @@
         android:textColor="@color/black" />
 
     <TextView
+        android:id="@+id/alamat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -28,6 +31,7 @@
         android:textSize="12sp"
         android:textColor="@color/black"/>
     <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -36,6 +40,7 @@
         android:textSize="12sp"
         android:textColor="@color/black"/>
     <TextView
+        android:id="@+id/tanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"

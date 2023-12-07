@@ -48,4 +48,7 @@ dependencies {
     // Firebase Realtime Database
     implementation 'com.google.firebase:firebase-database:20.3.0'
 
+    // Menambahkan ekstensi tambahan untuk keperluan jarak diantara anak dengan ortu
+    implementation 'com.google.maps.android:android-maps-utils:2.2.0'
+
 }

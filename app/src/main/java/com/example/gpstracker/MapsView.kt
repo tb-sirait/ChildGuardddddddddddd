@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.SphericalUtil
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 
 import java.text.DecimalFormat
 
@@ -90,6 +93,75 @@ class MapsView : Fragment() {
         markerOptions.icon(bitmapDescriptor)
         mMap.addMarker(markerOptions)
     }
+
+    // Take all data with passing from API using Bearer Token by Retrofit Library
+    object RetrofitClient {
+        private const val BASE_URL = "http://127.0.0.1:8000/parents"
+
+        private val httpClient = OkHttpClient.Builder().addInterceptor { chain ->
+            val original = chain.request()
+            val requestBuilder = original.newBuilder()
+                .method(original.method, original.body)
+            val request = requestBuilder.build()
+            chain.proceed(request)
+        }.build()
+
+        private val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build()
+
+        val apiService: APIService = retrofit.create(APIService::class.java)
+    }
+
+    // Main Process of Managing data from API to Map Visualization
+//    private fun makeApiCall() {
+//        val call = RetrofitClient.apiService.getData("73ob73y64nt3n653k4l1")
+//        call.enqueue(object : Callback<ApiResponse> {
+//            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+//                if (response.isSuccessful) {
+//                    val data = response.body()
+//                    if (data != null) {
+//                        // Handle the response data
+//                        val yourDataList = data.data
+//
+//                        for (item in yourDataList) {
+//                            val name = item.name
+//                            val date = item.date
+//                            val lat = item.lat
+//                            val lon = item.lon
+//                            val heading = item.heading.toFloat()
+//                            val calcspeed = item.calcspeed
+//                            val imo = item.IMO
+//                            val mmsi = item.MMSI
+//
+//                            Log.d("API Response", "Data: $data")
+//                            // Create a LatLng object using the latitude and longitude
+//                            val location = LatLng(lat, lon)
+//
+//                            // Marker ini khusus untuk mengetahui lokasi, nama kapal, dan arah kapal melaju menggunakan custom marker
+//                            setCustomMarkerIcon(location, name, heading, calcspeed, date, imo, mmsi)
+//                        }
+//                    }
+//                } else {
+//                    // Handle unsuccessful response (e.g., non-2xx status codes)
+//                    val errorResponseCode = response.code() // HTTP status code
+//                    val errorMessage = response.errorBody()?.string()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+//                // Handle failure
+//                // This method is called when the API call fails, for example, due to a network issue.
+//                val errorServer = ErrorServer()
+//                childFragmentManager.beginTransaction()
+//                    .replace(R.id.map, errorServer)
+//                    .addToBackStack(null) // Optional, adds the fragment to the back stack
+//                    .commit()
+//            }
+//        })
+//    }
 
     @SuppressLint("SetTextI18n")
     private fun createCustomMarker(nama: String, jarakAntarAnak: Double): Bitmap? {

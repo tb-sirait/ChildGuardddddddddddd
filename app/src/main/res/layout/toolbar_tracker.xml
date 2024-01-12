@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:orientation="horizontal"
+    android:id="@+id/toolbar"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:background="@drawable/background_text_tracker"
+        android:text="ChildGuard - Tracker"
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        style="@style/CustomFontStyle" />
+
+    <ImageView
+        android:layout_width="39dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/icon_mom" />
+
+</RelativeLayout>
